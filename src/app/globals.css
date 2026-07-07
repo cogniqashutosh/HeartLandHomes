@@ -2,25 +2,88 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a2233;
+
+  /* Heartland Homes of Florida brand palette */
+  --color-navy-50: #eef4fa;
+  --color-navy-100: #d6e6f2;
+  --color-navy-200: #adc9e2;
+  --color-navy-300: #7ea9d0;
+  --color-navy-400: #4783b8;
+  --color-navy-500: #0c71c3;
+  --color-navy-600: #0a5aaa;
+  --color-navy-700: #084b8c;
+  --color-navy-800: #063a6e;
+  --color-navy-900: #003366;
+  --color-navy-950: #021f40;
+
+  --color-sky-400: #6cc2f7;
+  --color-sky-500: #2ea3f2;
+  --color-sky-600: #1a8ad9;
+
+  --color-gold-300: #ffe08a;
+  --color-gold-400: #ffdb5c;
+  --color-gold-500: #ffcc33;
+  --color-gold-600: #e0a800;
+
+  --color-cream-50: #fffdf7;
+  --color-cream-100: #fbf7ec;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-50: var(--color-navy-50);
+  --color-navy-100: var(--color-navy-100);
+  --color-navy-200: var(--color-navy-200);
+  --color-navy-300: var(--color-navy-300);
+  --color-navy-400: var(--color-navy-400);
+  --color-navy-500: var(--color-navy-500);
+  --color-navy-600: var(--color-navy-600);
+  --color-navy-700: var(--color-navy-700);
+  --color-navy-800: var(--color-navy-800);
+  --color-navy-900: var(--color-navy-900);
+  --color-navy-950: var(--color-navy-950);
+
+  --color-sky-400: var(--color-sky-400);
+  --color-sky-500: var(--color-sky-500);
+  --color-sky-600: var(--color-sky-600);
+
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+
+  --color-cream-50: var(--color-cream-50);
+  --color-cream-100: var(--color-cream-100);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+.container-hh {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .container-hh {
+    padding-inline: 2rem;
+  }
 }

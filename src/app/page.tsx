@@ -1,65 +1,159 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, DollarSign, HardHat, Users, Leaf, LayoutGrid, HandCoins } from "lucide-react";
+import Hero from "@/components/Hero";
+import SectionHeader from "@/components/SectionHeader";
+import CommunityCard from "@/components/CommunityCard";
+import PropertyCard from "@/components/PropertyCard";
+import FloorPlanCard from "@/components/FloorPlanCard";
+import FeatureCard from "@/components/FeatureCard";
+import Timeline from "@/components/Timeline";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
+import Gallery from "@/components/Gallery";
+import CTASection from "@/components/CTASection";
+import { communities } from "@/data/communities";
+import { homeModels } from "@/data/homes";
+import { whyChooseUs } from "@/data/site";
+
+const featureIcons = [DollarSign, HardHat, Users, Leaf, LayoutGrid, HandCoins];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <Hero />
+
+      <section className="py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Featured Communities"
+            title="Explore Our Florida Communities"
+            description="Five thoughtfully located communities across Central and Southwest Florida, each offering quality homes at exceptional value."
+          />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {communities.map((community) => (
+              <CommunityCard key={community.slug} community={community} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/communities"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              View All Communities <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy-50/60 py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Available Homes"
+            title="Move-In Ready & New Construction Homes"
+            description="Browse a sample of our most popular floor plans, complete with pricing and specifications."
+          />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {homeModels.slice(0, 6).map((home) => (
+              <PropertyCard key={home.slug} home={home} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/homes"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              View All Homes <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Floor Plans"
+            title="Find the Perfect Floor Plan"
+            description="Eleven floor plans ranging from 1,068 to 2,011 sq. ft. — every one built with concrete block construction and granite countertops standard."
+          />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {homeModels.slice(0, 4).map((home) => (
+              <FloorPlanCard key={home.slug} home={home} />
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/floor-plans"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
+            >
+              View All Floor Plans <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="bg-navy-900 py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Why Choose Us"
+            title="Why Choose Heartland Homes"
+            description="We build with honesty and value at the core — features other builders call upgrades, we call standard."
+            light
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseUs.map((feature, i) => {
+              const Icon = featureIcons[i];
+              return (
+                <FeatureCard
+                  key={feature.title}
+                  icon={<Icon size={24} />}
+                  title={feature.title}
+                  description={feature.description}
+                  index={i}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="How It Works"
+            title="Your Home Buying Process"
+            description="A simple, stress-free path from browsing floor plans to holding the keys to your new home."
+          />
+          <div className="mt-16">
+            <Timeline />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy-50/60 py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Testimonials"
+            title="What Our Homeowners Say"
+          />
+          <div className="mt-12">
+            <TestimonialCarousel />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-hh">
+          <SectionHeader
+            eyebrow="Gallery"
+            title="Inside Our Homes"
+            description="A closer look at the craftsmanship, finishes, and spaces that make a Heartland home."
+          />
+          <div className="mt-12">
+            <Gallery />
+          </div>
+        </div>
+      </section>
+
+      <CTASection />
+    </>
   );
 }
