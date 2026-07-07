@@ -63,7 +63,7 @@ export default function ChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-6 z-40 flex max-h-130 w-[calc(100vw-3rem)] max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
+        <div className="fixed bottom-24 right-3 z-40 flex max-h-130 w-[calc(100vw-3rem)] max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
           <div className="flex items-center justify-between bg-navy-900 px-5 py-4">
             <div>
               <p className="font-display text-sm font-semibold text-white">Heartland Homes Assistant</p>
@@ -136,7 +136,7 @@ export default function ChatWidget() {
       <button
         aria-label={open ? "Close chat" : "Open chat"}
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gold-500 text-navy-900 shadow-lg"
+        className="fixed bottom-6 right-3 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gold-500 text-navy-900 shadow-lg"
       >
         {open ? <X size={24} /> : <MessageCircle size={24} />}
       </button>
