@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { BedDouble, Bath, Car, Ruler, FileDown, CheckCircle2 } from "lucide-react";
+import { BedDouble, Bath, Car, Ruler, FileDown, CheckCircle2, ArrowRight } from "lucide-react";
 import { homeModels, getHomeBySlug } from "@/data/homes";
 import { formatPrice } from "@/lib/utils";
+import FloorPlanCard from "@/components/FloorPlanCard";
+import CTASection from "@/components/CTASection";
 
 export function generateStaticParams() {
   return homeModels.map((h) => ({ slug: h.slug }));
@@ -24,21 +26,25 @@ export default async function FloorPlanDetailPage({ params }: { params: Promise<
   const home = getHomeBySlug(slug);
   if (!home) notFound();
 
+  const related = homeModels.filter((h) => h.slug !== home.slug).slice(0, 4);
+
   return (
-    <div className="pt-32 pb-20">
+    <div className="pt-24 pb-20">
       <div className="container-hh">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="relative h-80 overflow-hidden rounded-2xl lg:h-full">
+          <div className="relative h-80 overflow-hidden rounded-3xl shadow-lg lg:h-full">
             <Image src={home.image} alt={home.name} fill className="object-cover" />
+            <span className="absolute left-5 top-5 rounded-full bg-gold-500 px-4 py-1.5 text-sm font-semibold text-navy-900 shadow-sm">
+              {formatPrice(home.price)}
+            </span>
           </div>
 
           <div>
             <span className="text-sm font-semibold uppercase tracking-wider text-sky-600">Floor Plan</span>
-            <h1 className="mt-2 font-display text-4xl font-semibold text-black">{home.name}</h1>
-            <p className="mt-3 text-black">{home.tagline}</p>
-            <p className="mt-4 font-display text-2xl font-bold text-black">{formatPrice(home.price)}</p>
+            <h1 className="mt-2 font-display text-4xl font-semibold text-black sm:text-5xl">{home.name}</h1>
+            <p className="mt-3 text-lg text-black">{home.tagline}</p>
 
-            <div className="mt-6 grid grid-cols-4 gap-3 rounded-xl bg-slate-50 p-4">
+            <div className="mt-6 grid grid-cols-4 gap-3 rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100">
               <div className="text-center">
                 <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-sky-600 shadow-sm">
                   <BedDouble size={18} />
@@ -84,9 +90,9 @@ export default async function FloorPlanDetailPage({ params }: { params: Promise<
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="rounded-full bg-navy-900 px-6 py-3 text-sm font-semibold text-white"
+                className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-105"
               >
-                Request Information
+                Request Information <ArrowRight size={16} />
               </Link>
               <button className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-black">
                 <FileDown size={16} /> Download Brochure
@@ -94,6 +100,21 @@ export default async function FloorPlanDetailPage({ params }: { params: Promise<
             </div>
           </div>
         </div>
+
+        {related.length > 0 && (
+          <div className="mt-20">
+            <h2 className="font-display text-2xl font-semibold text-black">Other Floor Plans</h2>
+            <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {related.map((h) => (
+                <FloorPlanCard key={h.slug} home={h} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-20">
+        <CTASection />
       </div>
     </div>
   );
