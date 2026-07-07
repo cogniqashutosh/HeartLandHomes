@@ -8,7 +8,7 @@ import { heroStats } from "@/data/site";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-navy-950">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-navy-950">
       <Image
         src="/images/stock/hero.jpg"
         alt="A new Heartland Homes of Florida house"

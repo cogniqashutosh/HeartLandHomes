@@ -38,7 +38,7 @@ export default async function CommunityDetailPage({ params }: { params: Promise<
 
   return (
     <div>
-      <div className="relative h-[90vh] w-full">
+      <div className="relative h-screen w-full">
         <Image src={community.image} alt={community.name} fill priority className="object-cover" />
         <div className="absolute inset-0 bg-linear-to-t from-navy-950/85 via-navy-950/20 to-transparent" />
         <div className="container-hh absolute bottom-8 left-0 right-0 text-white">

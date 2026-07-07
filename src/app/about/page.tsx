@@ -31,7 +31,7 @@ const accentClasses = {
 export default function AboutPage() {
   return (
     <div>
-      <div className="relative h-[90vh] w-full">
+      <div className="relative h-screen w-full">
         <Image src="/images/stock/community-port-labelle.jpg" alt="A Heartland Homes community" fill priority className="object-cover" />
         <div className="absolute inset-0 bg-linear-to-t from-navy-950/85 via-navy-950/30 to-transparent" />
         <div className="container-hh absolute bottom-8 left-0 right-0 text-white">
