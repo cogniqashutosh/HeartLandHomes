@@ -29,8 +29,8 @@ export default async function FloorPlanDetailPage({ params }: { params: Promise<
   const related = homeModels.filter((h) => h.slug !== home.slug).slice(0, 4);
 
   return (
-    <div className="pt-24 pb-20">
-      <div className="container-hh">
+    <div>
+      <div className="container-hh pt-24 pb-20">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="relative h-80 overflow-hidden rounded-3xl shadow-lg lg:h-full">
             <Image src={home.image} alt={home.name} fill className="object-cover" />
@@ -113,9 +113,7 @@ export default async function FloorPlanDetailPage({ params }: { params: Promise<
         )}
       </div>
 
-      <div className="mt-20">
-        <CTASection />
-      </div>
+      <CTASection />
     </div>
   );
 }
