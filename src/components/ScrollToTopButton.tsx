@@ -19,7 +19,7 @@ export default function ScrollToTopButton() {
     <button
       aria-label="Scroll back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-black text-white shadow-lg"
+      className="fixed bottom-6 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full   bg-gold-500 text-black shadow-lg"
     >
       <ChevronUp size={22} />
     </button>
