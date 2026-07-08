@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
 import { heroStats } from "@/data/site";
+import AnimatedStat from "@/components/AnimatedStat";
 
 export default function Hero() {
   return (
@@ -61,8 +62,10 @@ export default function Hero() {
           className="mt-16 grid grid-cols-2 gap-6 rounded-2xl bg-white/10 p-6 backdrop-blur-md ring-1 ring-white/15 sm:grid-cols-4"
         >
           {heroStats.map((stat) => (
-            <div key={stat.label} className="text-center sm:text-left">
-              <p className="font-display text-3xl font-bold text-white">{stat.value}</p>
+            <div key={stat.label} className="text-center">
+              <p className="font-display text-3xl font-bold text-white">
+                <AnimatedStat value={stat.value} />
+              </p>
               <p className="mt-1 text-xs uppercase tracking-wide text-navy-200">{stat.label}</p>
             </div>
           ))}

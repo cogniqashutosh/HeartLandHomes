@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { navLinks, siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -17,8 +17,8 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-      <div className="flex h-18 w-full items-center justify-between px-5 py-3 sm:px-8 lg:px-12">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white">
+      <div className="grid h-20 w-full grid-cols-2 items-center px-5 sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:px-12">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/images/brand/hh.png"
@@ -26,50 +26,46 @@ export default function Navbar() {
             width={124}
             height={100}
             priority
-            className="h-16 w-auto object-contain brightness-110 contrast-125 saturate-125 drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)] sm:h-20"
+            className="h-16 w-auto object-contain brightness-110 contrast-125 saturate-125 sm:h-20"
           />
         </Link>
 
-        {navLinks.map((link) => {
-          const isActive = pathname === link.href;
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "hidden rounded-full px-4 py-2 font-display text-[15px] tracking-wide text-navy-800 lg:inline-block",
-                isActive ? "bg-navy-50 font-semibold text-navy-900" : "font-medium"
-              )}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
+        <nav className="hidden items-center gap-9 lg:flex">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "relative py-1.5 text-lg font-semibold text-navy-800 transition-colors",
+                  isActive && "text-navy-900"
+                )}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute -bottom-px left-0 right-0 h-0.5 rounded-full bg-gold-500" />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
 
-        <span className="hidden h-6 w-px bg-navy-200 lg:block" />
-
-        <a
-          href={siteConfig.phoneHref}
-          className="hidden items-center gap-2 rounded-full bg-navy-50 py-1.5 pr-3 pl-1.5 font-display text-base tracking-tight font-semibold text-navy-900 lg:flex"
-        >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/10 text-sky-600">
-            <Phone size={14} />
-          </span>
-          {siteConfig.phone}
-        </a>
-        <Link
-          href="/contact"
-          className="hidden items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 font-display text-base tracking-tight font-semibold text-navy-900 shadow-sm transition-transform hover:scale-105 hover:bg-gold-400 lg:inline-flex"
-        >
-          Schedule a Tour <ArrowRight size={15} />
-        </Link>
+        <div className="hidden justify-end lg:flex">
+          <Link
+            href="/contact"
+            className="flex items-center gap-1.5 rounded-lg bg-navy-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
+          >
+            Schedule a Tour <ArrowRight size={14} />
+          </Link>
+        </div>
 
         <button
           aria-label="Toggle menu"
-          className="text-navy-900 lg:hidden"
+          className="justify-self-end text-navy-900 lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={28} /> : <Menu size={28} />}
+          {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
